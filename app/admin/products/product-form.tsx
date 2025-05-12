@@ -26,6 +26,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { toSlug } from "@/lib/utils";
 import { IProductInput } from "@/types";
 import { Trash } from "lucide-react";
+import UpdateProduct from "./[id]/page";
 
 const productDefaultValues: IProductInput =
   process.env.NODE_ENV === "development"
@@ -82,10 +83,7 @@ const ProductForm = ({
   const router = useRouter();
 
   const form = useForm<IProductInput>({
-    resolver:
-      type === "Update"
-        ? zodResolver(ProductUpdateSchema)
-        : zodResolver(ProductInputSchema),
+    resolver: zodResolver(ProductInputSchema),
     defaultValues:
       product && type === "Update" ? product : productDefaultValues,
   });
